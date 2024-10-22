@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <main class="container">
+
+        <h3  class="text-center">Черновая справка</h3>
+
+         <div class="form-group">
+            <label class="form-label">Дата списания</label>
+            {% if tax.date %}
+                <input placeholder="Введите дату списания" disabled type="text" class="form-control" style="width: 250px" value="{{ tax.date }}">
+            {% else %}
+                <input placeholder="Введите дату списания" disabled type="text" class="form-control" style="width: 250px">
+            {% endif %}
+        </div>
+
+        <form method="post" action="{% url 'delete_tax' tax.id %}">
+            {% csrf_token %}
+                <button class="btn btn-danger delete-draft-tax-btn" type="submit">
+                    Удалить
+                </button>
+            </a>
+        </form>
+
+        <h4 class="text-center">Коды вычетов</h4>
+
+        <div class="cards-wrapper d-flex flex-column">
+
+            {% for code in tax.get_codes %}
+
+                {% include "code_card.html" %}
+
+            {% endfor %}
+
+        </div>
+
+    </main>
+{% endblock content %}
