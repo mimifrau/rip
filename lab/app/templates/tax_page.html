@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <main class="container">
+
+        <h3  class="text-center">Черновая справка</h3>
+
+        <span>За период -- 12 месяцев -- {{ tax.period }}</span>
+
+        <h4 class="text-left">Сумма вычетов : 6700₽</h4>
+
+        <div class="cards-wrapper d-flex flex-column">
+
+            {% for code in codes %}
+
+                {% include "code_card.html" %}
+
+            {% endfor %}
+
+        </div>
+
+    </main>
+{% endblock content %}
